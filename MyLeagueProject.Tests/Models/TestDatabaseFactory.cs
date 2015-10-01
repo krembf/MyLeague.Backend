@@ -13,5 +13,15 @@ namespace WebAPITemplateProject.Tests.Models
         {
             return new TestPersonRepository();
         }
+
+        public IGenericRepository<League> GetLeagueRepository()
+        {
+            return new TestLeagueRepository();
+        }
+
+        public IGenericRepository<Team> GetTeamRepository()
+        {
+            return new TestTeamRepository();
+        }
     }
 }

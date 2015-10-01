@@ -9,6 +9,8 @@ namespace WebAPITemplateProject.Models
     public interface IDatabaseFactory
     {
         IPersonRepository GetPersonRepository();
+        IGenericRepository<League> GetLeagueRepository();
+        IGenericRepository<Team> GetTeamRepository();
     };
 
     public interface IDatabase

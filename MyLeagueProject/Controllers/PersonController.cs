@@ -18,11 +18,20 @@ namespace WebAPITemplateProject.Controllers
             databasePlaceholder = _databaseFactory.GetPersonRepository();
         }
 
+        public PersonController()
+        {
+            //If default constructor is called, means it is "real" request
+            IDatabaseFactory factory = new MongoDBDatabaseFactory();
+            databasePlaceholder = factory.GetPersonRepository();
+        }
+
         public IEnumerable<Person> GetAllPeople()
         {
             return databasePlaceholder.GetAll();
         }
 
+        [Route("api/{controller}/{id}")]
+        [HttpGet]
         public Person GetPersonByID(int id)
         {
             Person person = databasePlaceholder.Get(id);
@@ -38,10 +47,10 @@ namespace WebAPITemplateProject.Controllers
         {
             person = databasePlaceholder.Add(person);
             string apiName = WebApiConfig.DEFAULT_ROUTE_NAME;
-            this.Request.SetConfiguration(new HttpConfiguration());
+            //this.Request.SetConfiguration(new HttpConfiguration());
             var response =
                 this.Request.CreateResponse<Person>(HttpStatusCode.Created, person);
-            string uri = Url.Link(apiName, new { id = person.Id, controller = "person" });
+            string uri = Url.Link(apiName, new { id = person.id, controller = "person" });
             response.Headers.Location = new Uri(uri);
             return response;
         }
@@ -66,6 +75,19 @@ namespace WebAPITemplateProject.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             databasePlaceholder.Remove(id);
+        }
+        
+        [Route("api/{controller}/{id}/{subcontroller}/{subid}")]
+        [HttpPost]
+        public HttpResponseMessage PostNotification(Notification notification)
+        {
+            notification = databasePlaceholder.Add(notification);
+            string apiName = WebApiConfig.DEFAULT_ROUTE_NAME;
+            var response =
+                this.Request.CreateResponse<Notification>(HttpStatusCode.Created, notification);
+            string uri = Url.Link(apiName, new { controller = "notification", id = notification.id });
+            response.Headers.Location = new Uri(uri);
+            return response;
         }
     }
 }

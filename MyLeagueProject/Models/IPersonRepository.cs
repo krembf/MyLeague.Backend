@@ -13,5 +13,6 @@ namespace WebAPITemplateProject.Models
         Person Add(Person person);
         void Remove(int id);
         bool Update(Person person);
+        Notification Add(Notification notification);
     }
 }

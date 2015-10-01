@@ -14,62 +14,67 @@ namespace WebAPITemplateProject.Tests.Models
         // most likely be a database of some sort, with an auto-incrementing ID field:
         private List<Person> _people = new List<Person>();
         private int _fakeDatabaseID = 1;
+        private int _fakeNotificationDatabaseID = 1;
 
         public TestPersonRepository()
         {
             // For the moment, we will load some sample data during initialization. 
             this.Add(new Person
             {
-                LastName = "Kreminski",
-                FirstName = "Boris",
-                Birth = new DateTime(1975, 8, 3),
-                Gender = "Male",
-                Role = "Midfielder",
-                Status = "Active",
-                Contact = new Contact
+                last_name = "Kreminski",
+                first_name = "Boris",
+                birth = (new DateTime(1975, 8, 3)).ToString(),
+                gender = "Male",
+                role = "Right wing-back (RWB)",
+                status = "Active",
+                contact = new Contact
                 {
-                    Email = "krembf@gmail.com",
-                    Phone = "+12675216016",
+                    email = "krembf@gmail.com",
+                    phone = "+12675216016",
                 },
-                Address = new Address
+                address = new Address
                 {
-                    Street = "301 Heights Ln, Apt 40D",
-                    City = "Feasterville-Trevose",
-                    State = "PA",
-                    Zip = "19053",
+                    street = "301 Heights Ln, Apt 40D",
+                    city = "Feasterville-Trevose",
+                    state = "PA",
+                    zip = "19053",
                 },
-                AccessLevel = new AccessLevel
+                access_level = new AccessLevel
                 {
-                    Group = "dev",
-                    Level = "5",
+                    group = "dev",
+                    level = 5,
                 },
+
+                notifications = new List<Notification>()
 
             });
             this.Add(new Person
             {
-                LastName = "Chudnovsky",
-                FirstName = "Alex",
-                Birth = new DateTime(1975, 8, 3),
-                Gender = "Male",
-                Role = "Defender",
-                Status = "Active",
-                Contact = new Contact
+                last_name = "Chudnovsky",
+                first_name = "Alex",
+                birth = (new DateTime(1975, 8, 3)).ToString(),
+                gender = "Male",
+                role = "Center-back (CB)",
+                status = "Active",
+                contact = new Contact
                 {
-                    Email = "achudnovsky@gmail.com",
-                    Phone = "+12675216016",
+                    email = "achudnovsky@gmail.com",
+                    phone = "+12675216016",
                 },
-                Address = new Address
+                address = new Address
                 {
-                    Street = "1234 Street Road",
-                    City = "Feasterville-Trevose",
-                    State = "PA",
-                    Zip = "19053",
+                    street = "1234 Street Road",
+                    city = "Feasterville-Trevose",
+                    state = "PA",
+                    zip = "19053",
                 },
-                AccessLevel = new AccessLevel
+                access_level = new AccessLevel
                 {
-                    Group = "dev",
-                    Level = "5",
+                    group = "dev",
+                    level = 5,
                 },
+
+                notifications = new List<Notification>()
 
             });
         }
@@ -83,7 +88,7 @@ namespace WebAPITemplateProject.Tests.Models
 
         public Person Get(int id)
         {
-            return _people.Find(p => p.Id == id);
+            return _people.Find(p => p.id == id);
         }
 
 
@@ -93,7 +98,7 @@ namespace WebAPITemplateProject.Tests.Models
             {
                 throw new ArgumentNullException("person");
             }
-            person.Id = _fakeDatabaseID++;
+            person.id = _fakeDatabaseID++;
             _people.Add(person);
             return person;
         }
@@ -101,7 +106,7 @@ namespace WebAPITemplateProject.Tests.Models
 
         public void Remove(int id)
         {
-            _people.RemoveAll(p => p.Id == id);
+            _people.RemoveAll(p => p.id == id);
         }
 
 
@@ -111,7 +116,7 @@ namespace WebAPITemplateProject.Tests.Models
             {
                 throw new ArgumentNullException("person");
             }
-            int index = _people.FindIndex(p => p.Id == person.Id);
+            int index = _people.FindIndex(p => p.id == person.id);
             if (index == -1)
             {
                 return false;
@@ -119,6 +124,24 @@ namespace WebAPITemplateProject.Tests.Models
             _people.RemoveAt(index);
             _people.Add(person);
             return true;
+        }
+
+        public Notification Add(Notification notification)
+        {
+            if (notification == null)
+            {
+                throw new ArgumentNullException("notification");
+            }
+
+            Person person = Get(notification.personid);
+
+            if(null != person)
+            {
+                notification.id = _fakeNotificationDatabaseID++;
+                person.notifications.Add(notification);
+            }
+
+            return notification;
         }
     }
 }

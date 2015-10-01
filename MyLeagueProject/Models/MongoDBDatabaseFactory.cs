@@ -50,6 +50,113 @@ namespace WebAPITemplateProject.Models
             }
             throw new NotImplementedException();
         }
+
+        public Notification Add(Notification notification)
+        {
+            if (notification == null)
+            {
+                throw new ArgumentNullException("notification");
+            }
+            throw new NotImplementedException();
+        }
+    };
+
+    public class MongoDBLeagueRepository : IGenericRepository<League>
+    {
+        public MongoDBLeagueRepository()
+        {
+        }
+
+
+        public IEnumerable<League> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public League Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<League> Get(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public League Add(League league)
+        {
+            if (league == null)
+            {
+                throw new ArgumentNullException("league");
+            }
+            throw new NotImplementedException();
+        }
+
+
+        public void Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public bool Update(League league)
+        {
+            if (league == null)
+            {
+                throw new ArgumentNullException("league");
+            }
+            throw new NotImplementedException();
+        }
+    };
+
+    public class MongoDBTeamRepository : IGenericRepository<Team>
+    {
+        public MongoDBTeamRepository()
+        {
+        }
+
+
+        public IEnumerable<Team> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Team Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<Team> Get(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Team Add(Team team)
+        {
+            if (team == null)
+            {
+                throw new ArgumentNullException("team");
+            }
+            throw new NotImplementedException();
+        }
+
+
+        public void Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public bool Update(Team team)
+        {
+            if (team == null)
+            {
+                throw new ArgumentNullException("team");
+            }
+            throw new NotImplementedException();
+        }
     };
 
     public class MongoDBDatabaseFactory : IDatabaseFactory
@@ -57,6 +164,16 @@ namespace WebAPITemplateProject.Models
         public IPersonRepository GetPersonRepository()
         {
             return new MongoDBPersonRepository();
+        }
+
+        public IGenericRepository<League> GetLeagueRepository()
+        {
+            return new MongoDBLeagueRepository();
+        }
+
+        public IGenericRepository<Team> GetTeamRepository()
+        {
+            return new MongoDBTeamRepository();
         }
     }
 }
