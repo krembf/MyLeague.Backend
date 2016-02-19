@@ -1,0 +1,152 @@
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: My League
+  
+produces:
+  - application/json
+
+paths:
+  /leagues:
+    # This is a HTTP operation
+    get:
+      summary: Leagues
+      description: |
+        The leagues endpoint returns information about
+        the leagues registered in the system
+      parameters:
+        - name: latitude
+          in: query
+          description: Latitude component of location.
+          required: true
+          type: number
+          format: double
+        - name: longitude
+          in: query
+          description: Longitude component of location.
+          required: true
+          type: number
+          format: double
+      tags:
+        - Leagues
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response. An array of leagues.
+          schema:
+            title: league
+            type: array
+            items:
+              $ref: '#/definitions/League'
+definitions:
+  League:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a league.
+      type:
+        type: string
+        description: The type of league.
+      name:
+        type: string
+        description: Display name of league.
+      teams:
+        type: array
+        items:
+          $ref: '#/definitions/Team'
+      seasons:
+        type: array
+        items:
+          $ref: '#/definitions/Season'
+      association:
+        type: string
+        description: The association to which the league belong.
+      address:
+        $ref: '#/definitions/Address'
+      image:
+        type: string
+        description: Image URL representing the league.
+      last_updated:
+        type: string
+        description: The date of last update.
+  Team:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a team.
+      name:
+        type: string
+        description: Display name of team.
+      coach:
+        type: string
+        description: The id of coach.
+      captain:
+        type: string
+        description: The id of captain.
+      players:
+        type: array
+        items:
+          $ref: '#/definitions/Player'
+      colors:
+        type: array
+        items:
+          $ref: '#/definitions/Color'
+      status:
+        type: string
+        description: The status of the team.
+      image:
+        type: string
+        description: Image URL representing the league.
+  Season:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a season.
+  Color:
+    type: object
+    properties:
+      home:
+        type: string
+        description: The home team color.
+      away:
+        type: string
+        description: The away team color.
+  Address:
+    type: object
+    properties:
+      street:
+        type: string
+        description: The street.
+      city:
+        type: string
+        description: The city.
+      city:
+        type: string
+        description: The city.
+      state:
+        type: string
+        description: The state.
+      zip:
+        type: string
+        description: The zip code.
+  Player:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the player.
+      person_id:
+        type: string
+        description: The id of the person.
+      shirtnumber:
+        type: string
+        description: The number of shirt.
+      position:
+        type: string
+        description: The position of the player.
