@@ -29,6 +29,11 @@ paths:
           required: true
           type: number
           format: double
+        - name: type
+          in: query
+          description: Type of the league.
+          required: true
+          type: string
       tags:
         - Leagues
       # Expected responses for this operation:
@@ -41,6 +46,11 @@ paths:
             type: array
             items:
               $ref: '#/definitions/League'
+        # Response code
+        400:
+          description: Failure response. Bad request.        
+        404:
+          description: Failure response. Leagues not found.
 definitions:
   League:
     type: object
