@@ -32,8 +32,13 @@ paths:
         - name: type
           in: query
           description: Type of the league.
-          required: true
+          required: false
           type: string
+        - name: name
+          in: query
+          description: Name of the league.
+          required: false
+          type: string          
       tags:
         - Leagues
       # Expected responses for this operation:
