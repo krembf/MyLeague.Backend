@@ -1,8 +1,8 @@
 # MyLeague
 Soccer leagues management
 
-#examples:
-#http://localhost:53403/api/leagues?latitude=25&longitude=15&type=Soccer&name=Bucks
+examples:
+http://localhost:53403/api/leagues?latitude=25&longitude=15&type=Soccer&name=Bucks
 
 The example collections are here:
 
