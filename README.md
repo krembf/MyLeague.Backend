@@ -1,3 +1,6 @@
+#examples:
+#http://localhost:53403/api/leagues?latitude=25&longitude=15&type=Soccer&name=Bucks
+
 # MyLeague
 Soccer leagues management
 
