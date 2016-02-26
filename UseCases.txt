@@ -1,0 +1,32 @@
+League:
+//Create new league:
+POST http://localhost:53403/api/leagues
+[
+  {
+    "type": "Soccer",
+    "name": "Bucks County Coed",
+    "address": {
+      "street": "301 Heights Lane",
+      "city": "Feasterville Trevose",
+      "state": "PA",
+      "zip": "19053"
+    }
+  }
+]
+//Get leagues by parameters:
+GET http://localhost:53403/api/leagues?latitude=25&longitude=15&type=Soccer&name=Bucks
+
+Notifications:
+//Create new notification:
+POST /persons/1/notifications
+//Get notifications for user
+GET /persons/1/notifications/unread
+
+Questions:
+	1) What team does the player belong too?
+	2) Provide the list of free players.
+	3) Best scorer of the season
+	4) Season table
+	
+	
+	Captain fills the results of their home game and it is forwarded to the away team captain for review.
