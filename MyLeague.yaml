@@ -56,6 +56,27 @@ paths:
           description: Failure response. Bad request.        
         404:
           description: Failure response. Leagues not found.
+    post:
+      summary: Create new league
+      description: |
+        The leagues endpoint returns information about
+        the leagues registered in the system
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: new league properties.
+          required: true
+          schema:
+            items:
+              $ref: '#/definitions/NewLeague'
+      responses:
+        201:
+          description: OK
+
 definitions:
   League:
     type: object
@@ -88,6 +109,20 @@ definitions:
       last_updated:
         type: string
         description: The date of last update.
+  NewLeague:
+    type: object
+    properties:
+      type:
+        type: string
+        description: The type of league.
+      name:
+        type: string
+        description: Display name of league.
+      address:
+        $ref: '#/definitions/Address'
+      image:
+        type: string
+        description: Image URL representing the league.
   Team:
     type: object
     properties:
