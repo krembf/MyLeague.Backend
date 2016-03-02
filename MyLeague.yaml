@@ -167,6 +167,82 @@ definitions:
       away:
         type: string
         description: The away team color.
+  Contact:
+    type: object
+    properties:
+      phone:
+        type: string
+        description: The phone number.
+      email:
+        type: string
+        description: The email address.
+  Document:
+    type: object
+    properties:
+      season:
+        type: string
+        description: The season id.
+      document:
+        type: string
+        description: The link to a document.
+  Access:
+    type: object
+    properties:
+      level:
+        type: string
+        description: The access level.
+      group:
+        type: string
+        description: The access group.
+  Payment:
+    type: object
+    properties:
+      season:
+        type: string
+        description: The season id.
+      method:
+        type: string
+        description: The payment method.
+        enum:
+         - check
+         - cash
+         - direct deposit
+  Notification:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of notification.
+      person_id:
+        type: string
+        description: The person id.
+      category:
+        type: string
+        description: The category of notification.
+        enum:
+         - action
+         - info
+      priority:
+        type: string
+        description: The priority of notification.
+      type:
+        type: string
+        description: The type of notification.
+        enum:
+         - join team
+         - leave team
+      parameters:
+        type: array
+        description: The additional parameters of notification.
+        items:
+         type: object
+         properties:
+          name:
+           type: string
+           description: The name of the parameter.
+          value:
+           type: string
+           description: The value of the parameter.         
   Address:
     type: object
     properties:
@@ -200,3 +276,59 @@ definitions:
       position:
         type: string
         description: The position of the player.
+  Person:
+    type: object
+    properties:
+     id:
+      type: string
+      description: The ID of the person
+     login:
+      type: string
+      description: The login of the person
+     password:
+      type: string
+      description: The password of the person
+     first_name:
+      type: string
+      description: First name
+     last_name:
+      type: string
+      description: Last name      
+     gender:
+      type: string
+      description: The gender of the person
+     address:
+      $ref: '#/definitions/Address'
+     birth:
+      type: string
+      description: The birth date of the person
+     photo:
+      type: string
+      description: The photo of the person
+     contact:
+      $ref: '#/definitions/Contact'
+     documents:
+      type: array
+      items:
+       $ref: '#/definitions/Document'
+     payments:
+      type: array
+      items:
+       $ref: '#/definitions/Payment'
+     role:
+      type: string
+      description: The natural position of the person
+     access_level:
+      $ref: '#/definitions/Access'
+     status:
+      type: string
+      description: Last name
+      enum:
+       - active
+       - injured
+       - inactive
+     notifications:
+      type: array
+      items:
+       $ref: '#/definitions/Notification'
+     
