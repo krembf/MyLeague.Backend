@@ -59,8 +59,7 @@ paths:
     post:
       summary: Create new league
       description: |
-        The leagues endpoint returns information about
-        the leagues registered in the system
+        The leagues endpoint creates new legue in the system
       consumes:
         - application/json
       produces:
@@ -71,12 +70,16 @@ paths:
           description: new league properties.
           required: true
           schema:
+            title: league
+            type: object
             items:
-              $ref: '#/definitions/NewLeague'
+              $ref: '#/definitions/League'
       responses:
+        # Response code
         201:
           description: OK
-
+        500:
+          description: Internal Server Error
 definitions:
   League:
     type: object
@@ -235,14 +238,14 @@ definitions:
         type: array
         description: The additional parameters of notification.
         items:
-         type: object
-         properties:
-          name:
-           type: string
-           description: The name of the parameter.
-          value:
-           type: string
-           description: The value of the parameter.         
+            type: object
+            properties:
+              name:
+                type: string
+                description: The name of the parameter.
+              value:
+                type: string
+                description: The value of the parameter.         
   Address:
     type: object
     properties:
