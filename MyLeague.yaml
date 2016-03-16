@@ -95,8 +95,9 @@ definitions:
         description: Display name of league.
       teams:
         type: array
+        description: collection of team IDs
         items:
-          $ref: '#/definitions/Team'
+          type: string
       seasons:
         type: array
         items:
@@ -112,20 +113,6 @@ definitions:
       last_updated:
         type: string
         description: The date of last update.
-  NewLeague:
-    type: object
-    properties:
-      type:
-        type: string
-        description: The type of league.
-      name:
-        type: string
-        description: Display name of league.
-      address:
-        $ref: '#/definitions/Address'
-      image:
-        type: string
-        description: Image URL representing the league.
   Team:
     type: object
     properties:
@@ -334,4 +321,4 @@ definitions:
       type: array
       items:
        $ref: '#/definitions/Notification'
-     
+       
