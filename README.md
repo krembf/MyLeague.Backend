@@ -1,9 +1,6 @@
 # MyLeague
 Soccer leagues management
 
-examples:
-http://localhost:53403/api/leagues?latitude=25&longitude=15&type=Soccer&name=Bucks
-
 The example collections are here:
 
 Users collection
@@ -189,3 +186,10 @@ Games collection
 		]
 	}
 }
+
+http://d3js.org/
+http://json2csharp.com/
+http://jsonlint.com/
+http://www.codeproject.com/Articles/868000/Push-Notification-For-Windows-iOS-Android-Quick-Ea
+http://www.restapitutorial.com/httpstatuscodes.html
+http://stackoverflow.com/questions/4687271/jax-rs-how-to-return-json-and-http-status-code-together
