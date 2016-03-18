@@ -77,7 +77,7 @@ paths:
       responses:
         # Response code
         201:
-          description: OK
+          description: Created
         500:
           description: Internal Server Error
 definitions:
@@ -321,4 +321,4 @@ definitions:
       type: array
       items:
        $ref: '#/definitions/Notification'
-       
+     
