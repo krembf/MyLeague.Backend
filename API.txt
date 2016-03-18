@@ -1,0 +1,23 @@
+/// Method returns a league by a given prameters
+GET http://localhost:53403/api/leagues?latitude=25&longitude=15&type=Soccer&name=Bucks
+    
+/// Method returns a league by a given prameters (case where the latitude and longitude are null)
+GET http://localhost:53403/api/leagues?latitude=&longitude=&type=Soccer&name=Bucks
+        
+/// Method returns a league by the name and type
+GET http://localhost:53403/api/leagues?type=Soccer&name=Bucks
+        
+/// Creates new league
+POST http://localhost:53403/api/leagues
+{
+  "type": "Soccer",
+  "name": "West Chester coed over 30",
+  "address": {
+    "street": "400 Boot Rd",
+    "city": "Downingtown",
+    "state": "PA",
+    "zip": "19053"
+  },
+  "image": "http://editor.swagger.io/photos"
+}
+
