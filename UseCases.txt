@@ -45,4 +45,4 @@ Questions:
 
 References:	
 http://www.restapitutorial.com/httpstatuscodes.html
-
+http://stackoverflow.com/questions/3290182/rest-http-status-codes-for-failed-validation-or-invalid-duplicate
