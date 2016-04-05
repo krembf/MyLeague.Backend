@@ -82,6 +82,8 @@ paths:
           description: Internal Server Error
         400:
           description: Bad Request
+        409:
+          description: Conflict          
 definitions:
   League:
     type: object
