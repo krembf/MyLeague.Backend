@@ -80,6 +80,8 @@ paths:
           description: Created
         500:
           description: Internal Server Error
+        400:
+          description: Bad Request
 definitions:
   League:
     type: object
