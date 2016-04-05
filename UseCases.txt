@@ -1,6 +1,6 @@
 League:
 
-//Create new league
+//Create new league (success case):
 POST http://localhost:53403/api/leagues
 {
   "type": "Soccer",
@@ -12,6 +12,11 @@ POST http://localhost:53403/api/leagues
     "zip": "19053"
   },
   "image": "http://editor.swagger.io/photos"
+}
+
+//Create new league (failure case):
+http://localhost:53403/api/leagues
+{
 }
 
 //Get leagues by parameters:
@@ -37,3 +42,7 @@ Questions:
 	
 	
 	Captain fills the results of their home game and it is forwarded to the away team captain for review.
+
+References:	
+http://www.restapitutorial.com/httpstatuscodes.html
+
