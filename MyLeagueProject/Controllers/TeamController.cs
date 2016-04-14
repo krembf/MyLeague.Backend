@@ -29,11 +29,11 @@ namespace WebAPITemplateProject.Controllers
             return databasePlaceholder.GetAll();
         }
 
-        [Route("api/{controller}/{id}")]
+        [Route("api/{team}/{id}")]
         [HttpGet]
         public Team GetTeamByID(int id)
         {
-            Team team = databasePlaceholder.Get(id);
+            Team team = databasePlaceholder.GetById(id.ToString());
             if (team == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -65,9 +65,9 @@ namespace WebAPITemplateProject.Controllers
         }
 
 
-        public void DeleteTeam(int id)
+        public void DeleteTeam(string id)
         {
-            Team team = databasePlaceholder.Get(id);
+            Team team = databasePlaceholder.GetById(id);
             if (team == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

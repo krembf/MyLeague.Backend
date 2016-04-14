@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLeagueProject", "MyLeagueProject\MyLeagueProject.csproj", "{DD29D264-1FC5-4C61-A3A0-65189024F88F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLeagueProject.Tests", "MyLeagueProject.Tests\MyLeagueProject.Tests.csproj", "{8F529FD2-FF23-4BB9-80F3-34B51FA03C9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLeagueProject.Database", "MyLeagueProject.Database\MyLeagueProject.Database.csproj", "{87E5FEA5-2EBB-499B-934A-4C15D321C46B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8F529FD2-FF23-4BB9-80F3-34B51FA03C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F529FD2-FF23-4BB9-80F3-34B51FA03C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F529FD2-FF23-4BB9-80F3-34B51FA03C9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E5FEA5-2EBB-499B-934A-4C15D321C46B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E5FEA5-2EBB-499B-934A-4C15D321C46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E5FEA5-2EBB-499B-934A-4C15D321C46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E5FEA5-2EBB-499B-934A-4C15D321C46B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

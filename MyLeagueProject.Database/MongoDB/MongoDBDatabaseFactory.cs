@@ -73,13 +73,12 @@ namespace WebAPITemplateProject.Models
             throw new NotImplementedException();
         }
 
-
-        public League Get(int id)
+        public League GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<League> Get(string name)
+        public ICollection<League> GetByName(string name)
         {
             throw new NotImplementedException();
         }
@@ -93,8 +92,7 @@ namespace WebAPITemplateProject.Models
             throw new NotImplementedException();
         }
 
-
-        public void Remove(int id)
+        public void Remove(string id)
         {
             throw new NotImplementedException();
         }
@@ -123,12 +121,12 @@ namespace WebAPITemplateProject.Models
         }
 
 
-        public Team Get(int id)
+        public Team GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Team> Get(string name)
+        public ICollection<Team> GetByName(string name)
         {
             throw new NotImplementedException();
         }
@@ -143,7 +141,7 @@ namespace WebAPITemplateProject.Models
         }
 
 
-        public void Remove(int id)
+        public void Remove(string id)
         {
             throw new NotImplementedException();
         }

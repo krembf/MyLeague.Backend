@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WebAPITemplateProject;
 using WebAPITemplateProject.Models;
+using WebAPITemplateProject.Tests.Models;
 
 namespace WebAPITemplateProject.Controllers
 {
@@ -21,7 +22,8 @@ namespace WebAPITemplateProject.Controllers
         public PersonController()
         {
             //If default constructor is called, means it is "real" request
-            IDatabaseFactory factory = new MongoDBDatabaseFactory();
+            //IDatabaseFactory factory = new MongoDBDatabaseFactory();
+            IDatabaseFactory factory = new TestDatabaseFactory();
             databasePlaceholder = factory.GetPersonRepository();
         }
 
@@ -30,7 +32,7 @@ namespace WebAPITemplateProject.Controllers
             return databasePlaceholder.GetAll();
         }
 
-        [Route("api/{controller}/{id}")]
+        [Route("api/{person}/{id}")]
         [HttpGet]
         public Person GetPersonByID(int id)
         {
@@ -76,8 +78,8 @@ namespace WebAPITemplateProject.Controllers
             }
             databasePlaceholder.Remove(id);
         }
-        
-        [Route("api/{controller}/{id}/{subcontroller}/{subid}")]
+
+        [Route("api/{person}/{id}/{subcontroller}/{subid}")]
         [HttpPost]
         public HttpResponseMessage PostNotification(Notification notification)
         {

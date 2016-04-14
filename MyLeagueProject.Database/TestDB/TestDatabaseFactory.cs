@@ -7,7 +7,7 @@ using WebAPITemplateProject.Models;
 
 namespace WebAPITemplateProject.Tests.Models
 {
-    class TestDatabaseFactory : IDatabaseFactory
+    public class TestDatabaseFactory : IDatabaseFactory
     {
         public IPersonRepository GetPersonRepository()
         {

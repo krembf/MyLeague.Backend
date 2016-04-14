@@ -1,14 +1,14 @@
 ﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebAPITemplateProject;
 using WebAPITemplateProject.Controllers;
+using NUnit.Framework;
 
 namespace WebAPITemplateProject.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [TestCase]
         public void Index()
         {
             // Arrange

@@ -38,12 +38,12 @@ namespace WebAPITemplateProject.Tests.Models
             return _teams;
         }
 
-        public Team Get(int id)
+        public Team GetById(string id)
         {
-            return _teams.Find(p => p.id == id);
+            return _teams.Find(p => p.id.Equals(id));
         }
 
-        public ICollection<Team> Get(string name)
+        public ICollection<Team> GetByName(string name)
         {
             return _teams.FindAll(x => x.name.Contains(name));
         }
@@ -59,9 +59,9 @@ namespace WebAPITemplateProject.Tests.Models
             return team;
         }
 
-        public void Remove(int id)
+        public void Remove(string id)
         {
-            _teams.RemoveAll(p => p.id == id);
+            _teams.RemoveAll(p => p.id.Equals(id));
         }
 
         public bool Update(Team team)

@@ -48,6 +48,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -106,10 +110,6 @@
   <ItemGroup>
     <Compile Include="Controllers\PersonControllerTest.cs" />
     <Compile Include="Controllers\LeagueControllerTest.cs" />
-    <Compile Include="Models\TestLeagueRepository.cs" />
-    <Compile Include="Models\TestPersonRepository.cs" />
-    <Compile Include="Models\TestDatabaseFactory.cs" />
-    <Compile Include="Models\TestTeamRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
@@ -121,10 +121,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyLeagueProject.Database\MyLeagueProject.Database.csproj">
+      <Project>{87e5fea5-2ebb-499b-934a-4c15d321c46b}</Project>
+      <Name>MyLeagueProject.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyLeagueProject\MyLeagueProject.csproj">
       <Project>{DD29D264-1FC5-4C61-A3A0-65189024F88F}</Project>
       <Name>MyLeagueProject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

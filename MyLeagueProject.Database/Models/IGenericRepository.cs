@@ -9,10 +9,10 @@ namespace WebAPITemplateProject.Models
     public interface IGenericRepository<T>
     {
         IEnumerable<T> GetAll();
-        T Get(int id);
-        ICollection<T> Get(string name);
+        T GetById(string id);
+        ICollection<T> GetByName(string name);
         T Add(T item);
-        void Remove(int id);
+        void Remove(string id);
         bool Update(T item);
     }
 }
