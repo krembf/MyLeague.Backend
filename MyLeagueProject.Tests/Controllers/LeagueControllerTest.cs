@@ -1,5 +1,4 @@
-﻿using System;
-using WebAPITemplateProject.Controllers;
+﻿using WebAPITemplateProject.Controllers;
 using WebAPITemplateProject.Tests.Models;
 using WebAPITemplateProject.Models;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ using System.Web.Http;
 using System.Web.Http.Routing;
 using System.Web.Http.Controllers;
 using System.Web.Http.Hosting;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace WebAPITemplateProject.Tests.Controllers
@@ -35,10 +33,10 @@ namespace WebAPITemplateProject.Tests.Controllers
         }
 
         [TestCase]
-        public void TestGetAllLeague()
+        public void TestGetAllLeagues()
         {
             IDatabaseFactory databaseFactory = new TestDatabaseFactory();
-            LeaguesController leagueController = new LeaguesController(databaseFactory);
+            var leagueController = new LeaguesController(databaseFactory);
 
             List<League> leagues = null;
             leagues = (List<League>)leagueController.GetAllLeagues();
@@ -50,13 +48,11 @@ namespace WebAPITemplateProject.Tests.Controllers
         public void TestGetLeagueByName()
         {
             IDatabaseFactory databaseFactory = new TestDatabaseFactory();
-            LeaguesController leagueController = new LeaguesController(databaseFactory);
+            var leagueController = new LeaguesController(databaseFactory);
 
-            List<League> leagues = null;
-            leagues = (List<League>)leagueController.Get("Soccer", "Coed");
+            var leagues = (List<League>)leagueController.Get("Soccer", "Coed");
 
             Assert.That(leagues.Count, Is.EqualTo(2), "The number of leagues should be two");
-
             Assert.AreEqual("Bucks County Coed", leagues[0].Name);
             Assert.AreEqual("Montgomery County Coed League over 30", leagues[1].Name);
         }
@@ -65,7 +61,7 @@ namespace WebAPITemplateProject.Tests.Controllers
         public void TestGetTeamsByLeague()
         {
             IDatabaseFactory databaseFactory = new TestDatabaseFactory();
-            LeaguesController leagueController = new LeaguesController(databaseFactory);
+            var leagueController = new LeaguesController(databaseFactory);
 
             var teams = leagueController.GetTeamsByLeague(1);
 
@@ -163,13 +159,13 @@ namespace WebAPITemplateProject.Tests.Controllers
         }
 
         [TestCaseSource("TestPostLeague_TestData")]
-        public void TestPostLeague(League league, HttpStatusCode statusCode)
+        public void TestCreateLeague(League league, HttpStatusCode statusCode)
         {
             var databaseFactory = new TestDatabaseFactory();
             var leagueController = new LeaguesController(databaseFactory);
             SetupControllerForTests(leagueController);
 
-            System.Net.Http.HttpResponseMessage response;
+            HttpResponseMessage response;
 
             response = leagueController.PostLeague(league);
 
@@ -177,7 +173,7 @@ namespace WebAPITemplateProject.Tests.Controllers
         }
 
         [TestCase]
-        public void TestPostLeague_DuplicateData()
+        public void TestCreateLeagueDuplicateData()
         {
             var league = new League
             {
@@ -197,7 +193,7 @@ namespace WebAPITemplateProject.Tests.Controllers
             var leagueController = new LeaguesController(databaseFactory);
             SetupControllerForTests(leagueController);
 
-            System.Net.Http.HttpResponseMessage response;
+            HttpResponseMessage response;
             response = leagueController.PostLeague(league);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created), "The expected status code is 201 created");
 
@@ -205,6 +201,57 @@ namespace WebAPITemplateProject.Tests.Controllers
             response = leagueController.PostLeague(league);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Conflict), "The expected status code is 409 conflict");
             Assert.That(response.Headers.Contains("X-Status-Reason"), Is.True, "The expected response should have \"X-Status-Reason\" header");
+
+            IEnumerable<string> values;
+            response.Headers.TryGetValues("X-Status-Reason", out values);
+            var enumerator = values.GetEnumerator();
+            Assert.That(enumerator.MoveNext(), Is.True, "X-Status-Reason header in the response should have at least one value");
+            Assert.That(enumerator.Current, Is.EqualTo(string.Format("The league with the name {0} already exists in the database", league.Name)), "unexpected response in header");
+        }
+
+        [TestCase]
+        public void TestUpdateLeagueSuccess()
+        {
+            var league = new League
+            {
+                Type = "Soccer",
+                Name = "West Chester coed over 30",
+                Address = new Address
+                {
+                    street = "400 Boot Rd",
+                    city = "Downingtown",
+                    state = "PA",
+                    zip = "19053"
+                },
+                Image = "http://editor.swagger.io/photos"
+            };
+
+            var databaseFactory = new TestDatabaseFactory();
+            var leagueController = new LeaguesController(databaseFactory);
+            SetupControllerForTests(leagueController);
+
+            // Add new league
+            var response = leagueController.PostLeague(league);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created), "The expected status code is 201 created");
+
+            // Get the newly created league
+            var leagues = leagueController.Get(league.Type, league.Name);
+            Assert.That(leagues.Count, Is.EqualTo(1), "The number of leagues shoud be one");
+            var createdLeague = leagues[0];
+
+            // Modify league name
+            createdLeague.Name = createdLeague.Name + "_Updated";
+
+            // Update league
+            var ret = leagueController.PutLeague(createdLeague.Id, createdLeague);
+
+            // Get updated league
+            leagues = leagueController.Get(league.Type, league.Name);
+            Assert.That(leagues.Count, Is.EqualTo(1), "The number of leagues should be one");
+            var modifiedLeague = leagues[0];
+
+            Assert.That(modifiedLeague.Id, Is.EqualTo(createdLeague.Id), "The league Id should remain the same");
+            Assert.That(modifiedLeague.Name, Is.EqualTo(createdLeague.Name), "The league name should remain the same");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace WebAPITemplateProject.Controllers
             return databasePlaceholder.GetAll();
         }
 
-        [Route("api/{person}/{id}")]
+        [Route("api/persons/{id}")]
         [HttpGet]
         public Person GetPersonByID(int id)
         {
@@ -57,7 +57,8 @@ namespace WebAPITemplateProject.Controllers
             return response;
         }
 
-
+        [Route("api/persons/{id}")]
+        [HttpPut]
         public bool PutPerson(Person person)
         {
             if (!databasePlaceholder.Update(person))
@@ -67,7 +68,6 @@ namespace WebAPITemplateProject.Controllers
 
             return true;
         }
-
 
         public void DeletePerson(int id)
         {
@@ -79,7 +79,7 @@ namespace WebAPITemplateProject.Controllers
             databasePlaceholder.Remove(id);
         }
 
-        [Route("api/{person}/{id}/{subcontroller}/{subid}")]
+        [Route("api/persons/{id}/{subcontroller}/{subid}")]
         [HttpPost]
         public HttpResponseMessage PostNotification(Notification notification)
         {

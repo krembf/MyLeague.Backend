@@ -29,7 +29,7 @@ namespace WebAPITemplateProject.Controllers
             return databasePlaceholder.GetAll();
         }
 
-        [Route("api/{team}/{id}")]
+        [Route("api/teams/{id}")]
         [HttpGet]
         public Team GetTeamByID(int id)
         {
@@ -40,7 +40,6 @@ namespace WebAPITemplateProject.Controllers
             }
             return team;
         }
-
 
         public HttpResponseMessage PostTeam(Team team)
         {
@@ -53,7 +52,8 @@ namespace WebAPITemplateProject.Controllers
             return response;
         }
 
-
+        [Route("api/teams/{id}")]
+        [HttpPut]
         public bool PutTeam(Team team)
         {
             if (!databasePlaceholder.Update(team))
@@ -63,7 +63,6 @@ namespace WebAPITemplateProject.Controllers
 
             return true;
         }
-
 
         public void DeleteTeam(string id)
         {

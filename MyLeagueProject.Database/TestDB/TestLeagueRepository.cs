@@ -18,17 +18,39 @@ namespace WebAPITemplateProject.Tests.Models
         {
             this.Add(new League
             {
-                Name = "Bucks County Coed",
                 Type = "Soccer",
-                Teams = new List<string>(new string[] { "1", "2" })
+                Name = "Bucks County Coed",
+                Teams = new List<string>(new string[] { "1", "2" }),
+                Seasons = null,
+                Address = new Address
+                {
+                    street = "501 Upper Holland Rd",
+                    city = "Richboro",
+                    state = "PA",
+                    zip = "55451"
+                },
+                Association = null,
+                Image = "http://editor.swagger.io/photos/Bucks_County_Coed",
+                LastUpdated = DateTime.Now.ToString()
             }
             );
 
             this.Add(new League
             {
-                Name = "Montgomery County Coed League over 30",
                 Type = "Soccer",
-                Teams = new List<string>(new string[] { "3", "4" })
+                Name = "Montgomery County Coed League over 30",
+                Teams = new List<string>(new string[] { "3", "4" }),
+                Seasons = null,
+                Address = new Address
+                {
+                    street = "21 Heaton Rd",
+                    city = "Hutington Valley",
+                    state = "PA",
+                    zip = "19006"
+                },
+                Association = null,
+                Image = "http://editor.swagger.io/photos/Montgomery_County_Coed",
+                LastUpdated = DateTime.Now.ToString()
             }
             );
         }
@@ -59,12 +81,12 @@ namespace WebAPITemplateProject.Tests.Models
             var found = _leagues.Where(l => l.Name == league.Name);
             if(found.Any())
             {
-                throw new DuplicateEntryException("There is already a league with the same name");
+                throw new DuplicateEntryException(
+                    string.Format("The league with the name {0} already exists in the database", league.Name));
             }
 
             league.Id = _fakeDatabaseID++.ToString();
             league.LastUpdated = DateTime.Now.ToString();
-            league.Association = string.Empty;
             _leagues.Add(league);
             return league;
         }
