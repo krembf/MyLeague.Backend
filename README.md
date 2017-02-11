@@ -4,6 +4,7 @@ Soccer leagues management
 The example collections are here:
 
 Users collection
+```javascript
 {
 	"person": {
 		"id": 1,
@@ -52,9 +53,11 @@ Users collection
 		]
 	}
 }
+```
 
 
 Teams collection
+```javascript
 {
 	"team": {
 		"id": 1,
@@ -77,9 +80,10 @@ Teams collection
 		"status": "Active"
 	}
 }
-
+```
 
 Leagues collection
+```javascript
 {
     "league": {
         "id": 1,
@@ -97,8 +101,10 @@ Leagues collection
 		}
 	}
 }
+```
 
 Seasons collection
+```javascript
 {
 	"season": {
 		"id": 1,
@@ -132,8 +138,10 @@ Seasons collection
 		]
 	}
 }
+```
 
 Pitch collection
+```javascript
 {
 	"pitch": {
 		"id": 1,
@@ -146,8 +154,10 @@ Pitch collection
 		"map": "https://www.google.com/maps/place/Richboro+Elementary+School/@40.2102964,-75.0039346,17z/data=!3m1!4b1!4m2!3m1!1s0x89c6ac988167955b:0x9c290bf1d8543b2d"
 	}
 }
+```
 
 Games collection
+```javascript
 {
 	"game": {
 		"id": 1,
@@ -186,6 +196,7 @@ Games collection
 		]
 	}
 }
+```
 
 http://d3js.org/
 http://json2csharp.com/
